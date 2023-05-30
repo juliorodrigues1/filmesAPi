@@ -29,9 +29,9 @@ public class FilmeController : ControllerBase
     }
     
     [HttpGet]
-    public IEnumerable<FilmeModel> findAll([FromQuery]int skip = 0, [FromQuery]int take = 10)
+    public IEnumerable<ReadFilmeDto> findAll([FromQuery]int skip = 0, [FromQuery]int take = 10)
     {
-        return _filmeApiContext.Filmes.Skip(skip).Take(take);
+        return _mapper.Map<List<ReadFilmeDto>>(_filmeApiContext.Filmes.Skip(skip).Take(take));
     }
 
     [HttpGet("{id}")]
@@ -39,8 +39,8 @@ public class FilmeController : ControllerBase
     {
         var filme = _filmeApiContext.Filmes.FirstOrDefault(filme => filme.id == id);
         if (filme == null) return NotFound();
-
-        return Ok(filme);
+        var filmeDto = _mapper.Map<ReadFilmeDto>(filme);
+        return Ok(filmeDto);
 
     }
 
