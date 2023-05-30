@@ -54,4 +54,15 @@ public class FilmeController : ControllerBase
         _filmeApiContext.SaveChanges();
         return NoContent();
     }
+
+    [HttpDelete("{id}")]
+    public IActionResult delete(int id)
+    {
+        var filme = _filmeApiContext.Filmes.FirstOrDefault(filme => filme.id == id);
+        if (filme == null) return NotFound();
+
+        _filmeApiContext.Filmes.Remove(filme);
+        _filmeApiContext.SaveChanges();
+        return NoContent();
+    }
 }
