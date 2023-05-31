@@ -6,7 +6,7 @@ namespace FilmeApi.Profiles;
 
 public class EnderecoProfile : Profile
 {
-    protected EnderecoProfile()
+    public EnderecoProfile()
     {
         CreateMap<CreateEnderecoDto, EnderecoModel>();
         CreateMap<UpdateEnderecoDto, EnderecoModel>();
