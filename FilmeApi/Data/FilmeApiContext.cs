@@ -12,4 +12,5 @@ public class FilmeApiContext : DbContext
 
     public DbSet<FilmeModel> Filmes { get; set; }
     public DbSet<CinemaModel> Cinemas { get; set; }
+    public DbSet<EnderecoModel> Enderecos { get; set; }
 }
