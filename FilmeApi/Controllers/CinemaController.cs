@@ -25,7 +25,7 @@ public class CinemaController : ControllerBase
         CinemaModel cinema = _mapper.Map<CinemaModel>(cinemaDto);
         _context.Cinemas.Add(cinema);
         _context.SaveChanges();
-        return CreatedAtAction(nameof(findById), new { id = cinema.id });
+        return CreatedAtAction(nameof(findById), new { id = cinema.id }, cinema);
     }
 
     [HttpGet("{id}")]
@@ -61,7 +61,7 @@ public class CinemaController : ControllerBase
         CinemaModel cinema = _context.Cinemas.FirstOrDefault(cinema => cinema.id == id);
         if (cinema == null) return NotFound();
 
-        _context.Remove(cinema);
+        _context.Cinemas.Remove(cinema);
         _context.SaveChanges();
         return NoContent();
     }
