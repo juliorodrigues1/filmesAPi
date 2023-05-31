@@ -17,7 +17,7 @@ namespace FilmeApi
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddDbContext<FilmeApiContext>(
-                opts => opts.UseNpgsql(builder.Configuration.GetConnectionString("DataBase"))
+                opts => opts.UseLazyLoadingProxies().UseNpgsql(builder.Configuration.GetConnectionString("DataBase"))
                 );
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
