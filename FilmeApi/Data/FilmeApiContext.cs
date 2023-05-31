@@ -11,5 +11,5 @@ public class FilmeApiContext : DbContext
     }
 
     public DbSet<FilmeModel> Filmes { get; set; }
-    public DbSet<CinemaModel> Cinemmas { get; set; }
+    public DbSet<CinemaModel> Cinemas { get; set; }
 }
