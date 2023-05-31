@@ -31,7 +31,7 @@ public class FilmeController : ControllerBase
     [HttpGet]
     public IEnumerable<ReadFilmeDto> findAll([FromQuery]int skip = 0, [FromQuery]int take = 10)
     {
-        return _mapper.Map<List<ReadFilmeDto>>(_filmeApiContext.Filmes.Skip(skip).Take(take));
+        return _mapper.Map<List<ReadFilmeDto>>(_filmeApiContext.Filmes.Skip(skip).Take(take).ToList());
     }
 
     [HttpGet("{id}")]
