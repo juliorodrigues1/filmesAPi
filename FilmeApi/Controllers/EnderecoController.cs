@@ -25,6 +25,7 @@ public class EnderecoController : ControllerBase
     {
         EnderecoModel endereco = _mapper.Map<EnderecoModel>(enderecoDto);
         _context.Enderecos.Add(endereco);
+        _context.SaveChanges();
         return CreatedAtAction(nameof(findById), new { id = endereco.id }, endereco);
     }
 
@@ -32,6 +33,7 @@ public class EnderecoController : ControllerBase
     public IActionResult findById(int id)
     {
         EnderecoModel endereco = _context.Enderecos.FirstOrDefault(endereco => endereco.id == id);
+        _context.Filmes.FirstOrDefault(filme => filme.id == id);
         if (endereco == null) return NotFound();
 
         var filmeDto = _mapper.Map<ReadEnderecoDto>(endereco);
