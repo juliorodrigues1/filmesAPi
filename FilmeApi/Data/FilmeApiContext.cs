@@ -24,6 +24,11 @@ public class FilmeApiContext : DbContext
             .HasOne(sessao => sessao.Filme)
             .WithMany(filme => filme.Sessoes)
             .HasForeignKey(sesao => sesao.filmeId);
+
+        builder.Entity<EnderecoModel>()
+            .HasOne(endereco => endereco.Cinema)
+            .WithOne(cinema => cinema.Endereco)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 
     public DbSet<FilmeModel> Filmes { get; set; }

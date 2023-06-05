@@ -110,7 +110,7 @@ namespace FilmeApi.Migrations
                     b.HasOne("FilmeApi.Models.EnderecoModel", "Endereco")
                         .WithOne("Cinema")
                         .HasForeignKey("FilmeApi.Models.CinemaModel", "enderecoId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Endereco");
