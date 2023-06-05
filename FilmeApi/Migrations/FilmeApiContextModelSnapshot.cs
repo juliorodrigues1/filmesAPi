@@ -92,23 +92,15 @@ namespace FilmeApi.Migrations
 
             modelBuilder.Entity("FilmeApi.Models.SessaoModel", b =>
                 {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int?>("filmeId")
                         .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
 
                     b.Property<int?>("CinemaId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("filmeId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("id");
+                    b.HasKey("filmeId", "CinemaId");
 
                     b.HasIndex("CinemaId");
-
-                    b.HasIndex("filmeId");
 
                     b.ToTable("Sessoes");
                 });
@@ -128,7 +120,9 @@ namespace FilmeApi.Migrations
                 {
                     b.HasOne("FilmeApi.Models.CinemaModel", "Cinema")
                         .WithMany("Sessoes")
-                        .HasForeignKey("CinemaId");
+                        .HasForeignKey("CinemaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("FilmeApi.Models.FilmeModel", "Filme")
                         .WithMany("Sessoes")
